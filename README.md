@@ -31,4 +31,4 @@ Debug/Kenop.exe "arquivo"
 
 # Para rodar testes
 
-No comando de execução troque onde tem "arquivo" ponha o nome de um dos arquivos de teste :(t1,t2,t3,t4,t5)
+No comando de execução troque onde tem "arquivo" ponha o nome de um dos arquivos de teste :(t1.txt,t2.txt,t3.txt,t4.txt,t5.txt)
