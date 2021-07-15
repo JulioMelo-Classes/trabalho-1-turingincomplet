@@ -17,6 +17,7 @@ Compilação automatizada: 1
 Organização em src, include, build, data: 0,8 (não organizou os arquivos no diretório data, ficando tudo no build)
 
 Comentários
+- Movi os arquivos da pasta build para a pasta data
 - Acho que seu editor de código deve estar configurado diferente do "padrão" pra código. Especialmente se for no windows,
 vi que a codificação dos arquivos que vc enviou pro github são iso 8859, enquanto o padrão é utf8. Isso explica o motivo
 do linux exibir estranhamente os caracteres. Inclusive, pode ser que dê algum problema após eu enviar as corresções,
