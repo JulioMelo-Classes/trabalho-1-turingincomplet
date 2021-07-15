@@ -7,6 +7,24 @@
 using namespace std;
 
 
+/*
+AvaliaÃ§Ã£o
+Processamento do Arquivo de Entrada: 0,75 (faltou o processamento de caracteres e de formataÃ§Ã£o do arquivo de apostas)
+ExecuÃ§Ã£o correta: 1
+Interfcace Textual: 1
+DocumentaÃ§Ã£o: 1
+CompilaÃ§Ã£o automatizada: 1
+OrganizaÃ§Ã£o em src, include, build, data: 0,8 (nÃ£o organizou os arquivos no diretÃ³rio data, ficando tudo no build)
+
+ComentÃ¡rios
+- Acho que seu editor de cÃ³digo deve estar configurado diferente do "padrÃ£o" pra cÃ³digo. Especialmente se for no windows,
+vi que a codificaÃ§Ã£o dos arquivos que vc enviou pro github sÃ£o iso 8859, enquanto o padrÃ£o Ã© utf8. Isso explica o motivo
+do linux exibir estranhamente os caracteres. Inclusive, pode ser que dÃª algum problema apÃ³s eu enviar as corresÃ§Ãµes,
+uma vez que esses comentÃ¡rios estÃ£o com utf8. Verifique isso para prÃ³ximas versÃµes, o powershell suporta utf8, entÃ£o
+vc nÃ£o deve ter problemas em executar no powershell o programa.
+- VocÃª poderia ter dividido melhor a parte de processamento de arquivos e da interface textual. Especialmente fazendo
+duas classes uma com cada uma das responsabilidades.
+*/
 
 int main(int argc, char* argv[]){
 	setlocale(LC_ALL, "");
@@ -47,47 +65,47 @@ int main(int argc, char* argv[]){
 		}
 		vef=bet.add_number(x);
 		if (!vef) {
-			cout<<"numero já colocado" << endl;
+			cout<<"numero jï¿½ colocado" << endl;
 			exit(1);
 		}
 	}
 	auto clonspots = bet.get_spots();
 	inserts(clonspots);
 	cout << ">>> Aposta lida com sucesso!" << endl;
-	cout << "    Você apostará um total de $" << wage << " créditos." << endl;
-	cout << "    Jogará um total de "<<rodas<<" rodadas, apostando $" << rodval << " créditos por rodada" <<'\n'<< endl;
-	cout << "    Sua aposta tem 3 números, eles são :"; printvec(clonspots);
+	cout << "    Vocï¿½ apostarï¿½ um total de $" << wage << " crï¿½ditos." << endl;
+	cout << "    Jogarï¿½ um total de "<<rodas<<" rodadas, apostando $" << rodval << " crï¿½ditos por rodada" <<'\n'<< endl;
+	cout << "    Sua aposta tem 3 nï¿½meros, eles sï¿½o :"; printvec(clonspots);
 	cout << endl;
 	auto ctable = tableval(bet.size());
 	printtable(ctable);
 	for (int i = 0; i < rodas; i++) {
-		cout << "      Esta é a rodada #" << i + 1 << " de " << rodas << " sua aposta é $" << rodval << ". Boa sorte!" << endl;
+		cout << "      Esta ï¿½ a rodada #" << i + 1 << " de " << rodas << " sua aposta ï¿½ $" << rodval << ". Boa sorte!" << endl;
 		auto hits = randhits();
 		inserts(hits);
-		cout << "      Os números sorteados são :"; printvec(hits);
+		cout << "      Os nï¿½meros sorteados sï¿½o :"; printvec(hits);
 		cout << endl;
 		auto chits =bet.get_hits(hits);
 		auto multi = ctable[chits.size()];
 		inserts(chits);
-		cout<<"      Você acertou os números "; printvec(chits);
+		cout<<"      Vocï¿½ acertou os nï¿½meros "; printvec(chits);
 		cout << ", um total de " << chits.size() << " hits de " << bet.size()<<endl;
-		cout << "      Sua taxa de retorno é " << multi << ", assim você sai com : $" << multi * rodval<<endl;
+		cout << "      Sua taxa de retorno ï¿½ " << multi << ", assim vocï¿½ sai com : $" << multi * rodval<<endl;
 		money -= rodval;
 		money += multi * rodval;
-		cout << "      Você possui um total de : $" << money << " créditos." <<endl;
+		cout << "      Vocï¿½ possui um total de : $" << money << " crï¿½ditos." <<endl;
 		cout<<"      ------------------------------------------------------------" << endl;
 	}
 	cout << ">>> Fim das rodadas!" << endl;
 	cout << "--------------------------------------------------------------------" << '\n' << endl;
-	cout << "======= Sumário =======" << endl;
-	cout << ">>> Você gastou um total de $" << wage << " créditos" << endl;
+	cout << "======= Sumï¿½rio =======" << endl;
+	cout << ">>> Vocï¿½ gastou um total de $" << wage << " crï¿½ditos" << endl;
 	if (money > wage) {
-		cout << ">>> Hooray! você ganhou $" << money - wage << " créditos!"<<endl;
+		cout << ">>> Hooray! vocï¿½ ganhou $" << money - wage << " crï¿½ditos!"<<endl;
 	}
 	else if (money < wage) {
-		cout << ">>> Que pena! você perdeu $" << wage-money << " créditos"<<endl;
+		cout << ">>> Que pena! vocï¿½ perdeu $" << wage-money << " crï¿½ditos"<<endl;
 	}
-	else cout << ">>> Bem, você não ganhou mais também nem perdeu" << endl;
-	cout << ">>> Você está saindo do jogo com um total de $" << money << " créditos."<<endl;
+	else cout << ">>> Bem, vocï¿½ nï¿½o ganhou mais tambï¿½m nem perdeu" << endl;
+	cout << ">>> Vocï¿½ estï¿½ saindo do jogo com um total de $" << money << " crï¿½ditos."<<endl;
 return 0;
 }
